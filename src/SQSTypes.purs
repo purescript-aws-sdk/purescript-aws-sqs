@@ -5,7 +5,6 @@ import Prelude
 import Data.Foreign.Class (class Decode, class Encode)
 import Data.Foreign.Generic (defaultOptions, genericDecode, genericEncode)
 import Data.Foreign.Generic.Types (Options)
-import Data.Foreign.NullOrUndefined (NullOrUndefined(..))
 import Data.Generic.Rep (class Generic)
 import Data.Generic.Rep.Show (genericShow)
 import Data.Maybe (Maybe(..))
@@ -94,7 +93,7 @@ newtype BatchResultErrorEntry = BatchResultErrorEntry
   { "Id" :: (String)
   , "SenderFault" :: (Boolean)
   , "Code" :: (String)
-  , "Message" :: NullOrUndefined (String)
+  , "Message" :: Maybe (String)
   }
 derive instance newtypeBatchResultErrorEntry :: Newtype BatchResultErrorEntry _
 derive instance repGenericBatchResultErrorEntry :: Generic BatchResultErrorEntry _
@@ -104,12 +103,12 @@ instance encodeBatchResultErrorEntry :: Encode BatchResultErrorEntry where encod
 
 -- | Constructs BatchResultErrorEntry from required parameters
 newBatchResultErrorEntry :: String -> String -> Boolean -> BatchResultErrorEntry
-newBatchResultErrorEntry _Code _Id _SenderFault = BatchResultErrorEntry { "Code": _Code, "Id": _Id, "SenderFault": _SenderFault, "Message": (NullOrUndefined Nothing) }
+newBatchResultErrorEntry _Code _Id _SenderFault = BatchResultErrorEntry { "Code": _Code, "Id": _Id, "SenderFault": _SenderFault, "Message": Nothing }
 
 -- | Constructs BatchResultErrorEntry's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newBatchResultErrorEntry' :: String -> String -> Boolean -> ( { "Id" :: (String) , "SenderFault" :: (Boolean) , "Code" :: (String) , "Message" :: NullOrUndefined (String) } -> {"Id" :: (String) , "SenderFault" :: (Boolean) , "Code" :: (String) , "Message" :: NullOrUndefined (String) } ) -> BatchResultErrorEntry
-newBatchResultErrorEntry' _Code _Id _SenderFault customize = (BatchResultErrorEntry <<< customize) { "Code": _Code, "Id": _Id, "SenderFault": _SenderFault, "Message": (NullOrUndefined Nothing) }
+newBatchResultErrorEntry' :: String -> String -> Boolean -> ( { "Id" :: (String) , "SenderFault" :: (Boolean) , "Code" :: (String) , "Message" :: Maybe (String) } -> {"Id" :: (String) , "SenderFault" :: (Boolean) , "Code" :: (String) , "Message" :: Maybe (String) } ) -> BatchResultErrorEntry
+newBatchResultErrorEntry' _Code _Id _SenderFault customize = (BatchResultErrorEntry <<< customize) { "Code": _Code, "Id": _Id, "SenderFault": _SenderFault, "Message": Nothing }
 
 
 
@@ -166,7 +165,7 @@ newChangeMessageVisibilityBatchRequest' _Entries _QueueUrl customize = (ChangeMe
 newtype ChangeMessageVisibilityBatchRequestEntry = ChangeMessageVisibilityBatchRequestEntry 
   { "Id" :: (String)
   , "ReceiptHandle" :: (String)
-  , "VisibilityTimeout" :: NullOrUndefined (Int)
+  , "VisibilityTimeout" :: Maybe (Int)
   }
 derive instance newtypeChangeMessageVisibilityBatchRequestEntry :: Newtype ChangeMessageVisibilityBatchRequestEntry _
 derive instance repGenericChangeMessageVisibilityBatchRequestEntry :: Generic ChangeMessageVisibilityBatchRequestEntry _
@@ -176,12 +175,12 @@ instance encodeChangeMessageVisibilityBatchRequestEntry :: Encode ChangeMessageV
 
 -- | Constructs ChangeMessageVisibilityBatchRequestEntry from required parameters
 newChangeMessageVisibilityBatchRequestEntry :: String -> String -> ChangeMessageVisibilityBatchRequestEntry
-newChangeMessageVisibilityBatchRequestEntry _Id _ReceiptHandle = ChangeMessageVisibilityBatchRequestEntry { "Id": _Id, "ReceiptHandle": _ReceiptHandle, "VisibilityTimeout": (NullOrUndefined Nothing) }
+newChangeMessageVisibilityBatchRequestEntry _Id _ReceiptHandle = ChangeMessageVisibilityBatchRequestEntry { "Id": _Id, "ReceiptHandle": _ReceiptHandle, "VisibilityTimeout": Nothing }
 
 -- | Constructs ChangeMessageVisibilityBatchRequestEntry's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newChangeMessageVisibilityBatchRequestEntry' :: String -> String -> ( { "Id" :: (String) , "ReceiptHandle" :: (String) , "VisibilityTimeout" :: NullOrUndefined (Int) } -> {"Id" :: (String) , "ReceiptHandle" :: (String) , "VisibilityTimeout" :: NullOrUndefined (Int) } ) -> ChangeMessageVisibilityBatchRequestEntry
-newChangeMessageVisibilityBatchRequestEntry' _Id _ReceiptHandle customize = (ChangeMessageVisibilityBatchRequestEntry <<< customize) { "Id": _Id, "ReceiptHandle": _ReceiptHandle, "VisibilityTimeout": (NullOrUndefined Nothing) }
+newChangeMessageVisibilityBatchRequestEntry' :: String -> String -> ( { "Id" :: (String) , "ReceiptHandle" :: (String) , "VisibilityTimeout" :: Maybe (Int) } -> {"Id" :: (String) , "ReceiptHandle" :: (String) , "VisibilityTimeout" :: Maybe (Int) } ) -> ChangeMessageVisibilityBatchRequestEntry
+newChangeMessageVisibilityBatchRequestEntry' _Id _ReceiptHandle customize = (ChangeMessageVisibilityBatchRequestEntry <<< customize) { "Id": _Id, "ReceiptHandle": _ReceiptHandle, "VisibilityTimeout": Nothing }
 
 
 
@@ -271,7 +270,7 @@ newChangeMessageVisibilityRequest' _QueueUrl _ReceiptHandle _VisibilityTimeout c
 -- | <p/>
 newtype CreateQueueRequest = CreateQueueRequest 
   { "QueueName" :: (String)
-  , "Attributes" :: NullOrUndefined (QueueAttributeMap)
+  , "Attributes" :: Maybe (QueueAttributeMap)
   }
 derive instance newtypeCreateQueueRequest :: Newtype CreateQueueRequest _
 derive instance repGenericCreateQueueRequest :: Generic CreateQueueRequest _
@@ -281,18 +280,18 @@ instance encodeCreateQueueRequest :: Encode CreateQueueRequest where encode = ge
 
 -- | Constructs CreateQueueRequest from required parameters
 newCreateQueueRequest :: String -> CreateQueueRequest
-newCreateQueueRequest _QueueName = CreateQueueRequest { "QueueName": _QueueName, "Attributes": (NullOrUndefined Nothing) }
+newCreateQueueRequest _QueueName = CreateQueueRequest { "QueueName": _QueueName, "Attributes": Nothing }
 
 -- | Constructs CreateQueueRequest's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCreateQueueRequest' :: String -> ( { "QueueName" :: (String) , "Attributes" :: NullOrUndefined (QueueAttributeMap) } -> {"QueueName" :: (String) , "Attributes" :: NullOrUndefined (QueueAttributeMap) } ) -> CreateQueueRequest
-newCreateQueueRequest' _QueueName customize = (CreateQueueRequest <<< customize) { "QueueName": _QueueName, "Attributes": (NullOrUndefined Nothing) }
+newCreateQueueRequest' :: String -> ( { "QueueName" :: (String) , "Attributes" :: Maybe (QueueAttributeMap) } -> {"QueueName" :: (String) , "Attributes" :: Maybe (QueueAttributeMap) } ) -> CreateQueueRequest
+newCreateQueueRequest' _QueueName customize = (CreateQueueRequest <<< customize) { "QueueName": _QueueName, "Attributes": Nothing }
 
 
 
 -- | <p>Returns the <code>QueueUrl</code> attribute of the created queue.</p>
 newtype CreateQueueResult = CreateQueueResult 
-  { "QueueUrl" :: NullOrUndefined (String)
+  { "QueueUrl" :: Maybe (String)
   }
 derive instance newtypeCreateQueueResult :: Newtype CreateQueueResult _
 derive instance repGenericCreateQueueResult :: Generic CreateQueueResult _
@@ -302,12 +301,12 @@ instance encodeCreateQueueResult :: Encode CreateQueueResult where encode = gene
 
 -- | Constructs CreateQueueResult from required parameters
 newCreateQueueResult :: CreateQueueResult
-newCreateQueueResult  = CreateQueueResult { "QueueUrl": (NullOrUndefined Nothing) }
+newCreateQueueResult  = CreateQueueResult { "QueueUrl": Nothing }
 
 -- | Constructs CreateQueueResult's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCreateQueueResult' :: ( { "QueueUrl" :: NullOrUndefined (String) } -> {"QueueUrl" :: NullOrUndefined (String) } ) -> CreateQueueResult
-newCreateQueueResult'  customize = (CreateQueueResult <<< customize) { "QueueUrl": (NullOrUndefined Nothing) }
+newCreateQueueResult' :: ( { "QueueUrl" :: Maybe (String) } -> {"QueueUrl" :: Maybe (String) } ) -> CreateQueueResult
+newCreateQueueResult'  customize = (CreateQueueResult <<< customize) { "QueueUrl": Nothing }
 
 
 
@@ -472,7 +471,7 @@ instance encodeEmptyBatchRequest :: Encode EmptyBatchRequest where encode = gene
 -- | <p/>
 newtype GetQueueAttributesRequest = GetQueueAttributesRequest 
   { "QueueUrl" :: (String)
-  , "AttributeNames" :: NullOrUndefined (AttributeNameList)
+  , "AttributeNames" :: Maybe (AttributeNameList)
   }
 derive instance newtypeGetQueueAttributesRequest :: Newtype GetQueueAttributesRequest _
 derive instance repGenericGetQueueAttributesRequest :: Generic GetQueueAttributesRequest _
@@ -482,18 +481,18 @@ instance encodeGetQueueAttributesRequest :: Encode GetQueueAttributesRequest whe
 
 -- | Constructs GetQueueAttributesRequest from required parameters
 newGetQueueAttributesRequest :: String -> GetQueueAttributesRequest
-newGetQueueAttributesRequest _QueueUrl = GetQueueAttributesRequest { "QueueUrl": _QueueUrl, "AttributeNames": (NullOrUndefined Nothing) }
+newGetQueueAttributesRequest _QueueUrl = GetQueueAttributesRequest { "QueueUrl": _QueueUrl, "AttributeNames": Nothing }
 
 -- | Constructs GetQueueAttributesRequest's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetQueueAttributesRequest' :: String -> ( { "QueueUrl" :: (String) , "AttributeNames" :: NullOrUndefined (AttributeNameList) } -> {"QueueUrl" :: (String) , "AttributeNames" :: NullOrUndefined (AttributeNameList) } ) -> GetQueueAttributesRequest
-newGetQueueAttributesRequest' _QueueUrl customize = (GetQueueAttributesRequest <<< customize) { "QueueUrl": _QueueUrl, "AttributeNames": (NullOrUndefined Nothing) }
+newGetQueueAttributesRequest' :: String -> ( { "QueueUrl" :: (String) , "AttributeNames" :: Maybe (AttributeNameList) } -> {"QueueUrl" :: (String) , "AttributeNames" :: Maybe (AttributeNameList) } ) -> GetQueueAttributesRequest
+newGetQueueAttributesRequest' _QueueUrl customize = (GetQueueAttributesRequest <<< customize) { "QueueUrl": _QueueUrl, "AttributeNames": Nothing }
 
 
 
 -- | <p>A list of returned queue attributes.</p>
 newtype GetQueueAttributesResult = GetQueueAttributesResult 
-  { "Attributes" :: NullOrUndefined (QueueAttributeMap)
+  { "Attributes" :: Maybe (QueueAttributeMap)
   }
 derive instance newtypeGetQueueAttributesResult :: Newtype GetQueueAttributesResult _
 derive instance repGenericGetQueueAttributesResult :: Generic GetQueueAttributesResult _
@@ -503,19 +502,19 @@ instance encodeGetQueueAttributesResult :: Encode GetQueueAttributesResult where
 
 -- | Constructs GetQueueAttributesResult from required parameters
 newGetQueueAttributesResult :: GetQueueAttributesResult
-newGetQueueAttributesResult  = GetQueueAttributesResult { "Attributes": (NullOrUndefined Nothing) }
+newGetQueueAttributesResult  = GetQueueAttributesResult { "Attributes": Nothing }
 
 -- | Constructs GetQueueAttributesResult's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetQueueAttributesResult' :: ( { "Attributes" :: NullOrUndefined (QueueAttributeMap) } -> {"Attributes" :: NullOrUndefined (QueueAttributeMap) } ) -> GetQueueAttributesResult
-newGetQueueAttributesResult'  customize = (GetQueueAttributesResult <<< customize) { "Attributes": (NullOrUndefined Nothing) }
+newGetQueueAttributesResult' :: ( { "Attributes" :: Maybe (QueueAttributeMap) } -> {"Attributes" :: Maybe (QueueAttributeMap) } ) -> GetQueueAttributesResult
+newGetQueueAttributesResult'  customize = (GetQueueAttributesResult <<< customize) { "Attributes": Nothing }
 
 
 
 -- | <p/>
 newtype GetQueueUrlRequest = GetQueueUrlRequest 
   { "QueueName" :: (String)
-  , "QueueOwnerAWSAccountId" :: NullOrUndefined (String)
+  , "QueueOwnerAWSAccountId" :: Maybe (String)
   }
 derive instance newtypeGetQueueUrlRequest :: Newtype GetQueueUrlRequest _
 derive instance repGenericGetQueueUrlRequest :: Generic GetQueueUrlRequest _
@@ -525,18 +524,18 @@ instance encodeGetQueueUrlRequest :: Encode GetQueueUrlRequest where encode = ge
 
 -- | Constructs GetQueueUrlRequest from required parameters
 newGetQueueUrlRequest :: String -> GetQueueUrlRequest
-newGetQueueUrlRequest _QueueName = GetQueueUrlRequest { "QueueName": _QueueName, "QueueOwnerAWSAccountId": (NullOrUndefined Nothing) }
+newGetQueueUrlRequest _QueueName = GetQueueUrlRequest { "QueueName": _QueueName, "QueueOwnerAWSAccountId": Nothing }
 
 -- | Constructs GetQueueUrlRequest's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetQueueUrlRequest' :: String -> ( { "QueueName" :: (String) , "QueueOwnerAWSAccountId" :: NullOrUndefined (String) } -> {"QueueName" :: (String) , "QueueOwnerAWSAccountId" :: NullOrUndefined (String) } ) -> GetQueueUrlRequest
-newGetQueueUrlRequest' _QueueName customize = (GetQueueUrlRequest <<< customize) { "QueueName": _QueueName, "QueueOwnerAWSAccountId": (NullOrUndefined Nothing) }
+newGetQueueUrlRequest' :: String -> ( { "QueueName" :: (String) , "QueueOwnerAWSAccountId" :: Maybe (String) } -> {"QueueName" :: (String) , "QueueOwnerAWSAccountId" :: Maybe (String) } ) -> GetQueueUrlRequest
+newGetQueueUrlRequest' _QueueName customize = (GetQueueUrlRequest <<< customize) { "QueueName": _QueueName, "QueueOwnerAWSAccountId": Nothing }
 
 
 
 -- | <p>For more information, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UnderstandingResponses.html">Responses</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p>
 newtype GetQueueUrlResult = GetQueueUrlResult 
-  { "QueueUrl" :: NullOrUndefined (String)
+  { "QueueUrl" :: Maybe (String)
   }
 derive instance newtypeGetQueueUrlResult :: Newtype GetQueueUrlResult _
 derive instance repGenericGetQueueUrlResult :: Generic GetQueueUrlResult _
@@ -546,12 +545,12 @@ instance encodeGetQueueUrlResult :: Encode GetQueueUrlResult where encode = gene
 
 -- | Constructs GetQueueUrlResult from required parameters
 newGetQueueUrlResult :: GetQueueUrlResult
-newGetQueueUrlResult  = GetQueueUrlResult { "QueueUrl": (NullOrUndefined Nothing) }
+newGetQueueUrlResult  = GetQueueUrlResult { "QueueUrl": Nothing }
 
 -- | Constructs GetQueueUrlResult's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetQueueUrlResult' :: ( { "QueueUrl" :: NullOrUndefined (String) } -> {"QueueUrl" :: NullOrUndefined (String) } ) -> GetQueueUrlResult
-newGetQueueUrlResult'  customize = (GetQueueUrlResult <<< customize) { "QueueUrl": (NullOrUndefined Nothing) }
+newGetQueueUrlResult' :: ( { "QueueUrl" :: Maybe (String) } -> {"QueueUrl" :: Maybe (String) } ) -> GetQueueUrlResult
+newGetQueueUrlResult'  customize = (GetQueueUrlResult <<< customize) { "QueueUrl": Nothing }
 
 
 
@@ -658,7 +657,7 @@ newListQueueTagsRequest' _QueueUrl customize = (ListQueueTagsRequest <<< customi
 
 
 newtype ListQueueTagsResult = ListQueueTagsResult 
-  { "Tags" :: NullOrUndefined (TagMap)
+  { "Tags" :: Maybe (TagMap)
   }
 derive instance newtypeListQueueTagsResult :: Newtype ListQueueTagsResult _
 derive instance repGenericListQueueTagsResult :: Generic ListQueueTagsResult _
@@ -668,18 +667,18 @@ instance encodeListQueueTagsResult :: Encode ListQueueTagsResult where encode = 
 
 -- | Constructs ListQueueTagsResult from required parameters
 newListQueueTagsResult :: ListQueueTagsResult
-newListQueueTagsResult  = ListQueueTagsResult { "Tags": (NullOrUndefined Nothing) }
+newListQueueTagsResult  = ListQueueTagsResult { "Tags": Nothing }
 
 -- | Constructs ListQueueTagsResult's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListQueueTagsResult' :: ( { "Tags" :: NullOrUndefined (TagMap) } -> {"Tags" :: NullOrUndefined (TagMap) } ) -> ListQueueTagsResult
-newListQueueTagsResult'  customize = (ListQueueTagsResult <<< customize) { "Tags": (NullOrUndefined Nothing) }
+newListQueueTagsResult' :: ( { "Tags" :: Maybe (TagMap) } -> {"Tags" :: Maybe (TagMap) } ) -> ListQueueTagsResult
+newListQueueTagsResult'  customize = (ListQueueTagsResult <<< customize) { "Tags": Nothing }
 
 
 
 -- | <p/>
 newtype ListQueuesRequest = ListQueuesRequest 
-  { "QueueNamePrefix" :: NullOrUndefined (String)
+  { "QueueNamePrefix" :: Maybe (String)
   }
 derive instance newtypeListQueuesRequest :: Newtype ListQueuesRequest _
 derive instance repGenericListQueuesRequest :: Generic ListQueuesRequest _
@@ -689,18 +688,18 @@ instance encodeListQueuesRequest :: Encode ListQueuesRequest where encode = gene
 
 -- | Constructs ListQueuesRequest from required parameters
 newListQueuesRequest :: ListQueuesRequest
-newListQueuesRequest  = ListQueuesRequest { "QueueNamePrefix": (NullOrUndefined Nothing) }
+newListQueuesRequest  = ListQueuesRequest { "QueueNamePrefix": Nothing }
 
 -- | Constructs ListQueuesRequest's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListQueuesRequest' :: ( { "QueueNamePrefix" :: NullOrUndefined (String) } -> {"QueueNamePrefix" :: NullOrUndefined (String) } ) -> ListQueuesRequest
-newListQueuesRequest'  customize = (ListQueuesRequest <<< customize) { "QueueNamePrefix": (NullOrUndefined Nothing) }
+newListQueuesRequest' :: ( { "QueueNamePrefix" :: Maybe (String) } -> {"QueueNamePrefix" :: Maybe (String) } ) -> ListQueuesRequest
+newListQueuesRequest'  customize = (ListQueuesRequest <<< customize) { "QueueNamePrefix": Nothing }
 
 
 
 -- | <p>A list of your queues.</p>
 newtype ListQueuesResult = ListQueuesResult 
-  { "QueueUrls" :: NullOrUndefined (QueueUrlList)
+  { "QueueUrls" :: Maybe (QueueUrlList)
   }
 derive instance newtypeListQueuesResult :: Newtype ListQueuesResult _
 derive instance repGenericListQueuesResult :: Generic ListQueuesResult _
@@ -710,24 +709,24 @@ instance encodeListQueuesResult :: Encode ListQueuesResult where encode = generi
 
 -- | Constructs ListQueuesResult from required parameters
 newListQueuesResult :: ListQueuesResult
-newListQueuesResult  = ListQueuesResult { "QueueUrls": (NullOrUndefined Nothing) }
+newListQueuesResult  = ListQueuesResult { "QueueUrls": Nothing }
 
 -- | Constructs ListQueuesResult's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListQueuesResult' :: ( { "QueueUrls" :: NullOrUndefined (QueueUrlList) } -> {"QueueUrls" :: NullOrUndefined (QueueUrlList) } ) -> ListQueuesResult
-newListQueuesResult'  customize = (ListQueuesResult <<< customize) { "QueueUrls": (NullOrUndefined Nothing) }
+newListQueuesResult' :: ( { "QueueUrls" :: Maybe (QueueUrlList) } -> {"QueueUrls" :: Maybe (QueueUrlList) } ) -> ListQueuesResult
+newListQueuesResult'  customize = (ListQueuesResult <<< customize) { "QueueUrls": Nothing }
 
 
 
 -- | <p>An Amazon SQS message.</p>
 newtype Message = Message 
-  { "MessageId" :: NullOrUndefined (String)
-  , "ReceiptHandle" :: NullOrUndefined (String)
-  , "MD5OfBody" :: NullOrUndefined (String)
-  , "Body" :: NullOrUndefined (String)
-  , "Attributes" :: NullOrUndefined (MessageSystemAttributeMap)
-  , "MD5OfMessageAttributes" :: NullOrUndefined (String)
-  , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap)
+  { "MessageId" :: Maybe (String)
+  , "ReceiptHandle" :: Maybe (String)
+  , "MD5OfBody" :: Maybe (String)
+  , "Body" :: Maybe (String)
+  , "Attributes" :: Maybe (MessageSystemAttributeMap)
+  , "MD5OfMessageAttributes" :: Maybe (String)
+  , "MessageAttributes" :: Maybe (MessageBodyAttributeMap)
   }
 derive instance newtypeMessage :: Newtype Message _
 derive instance repGenericMessage :: Generic Message _
@@ -737,12 +736,12 @@ instance encodeMessage :: Encode Message where encode = genericEncode options
 
 -- | Constructs Message from required parameters
 newMessage :: Message
-newMessage  = Message { "Attributes": (NullOrUndefined Nothing), "Body": (NullOrUndefined Nothing), "MD5OfBody": (NullOrUndefined Nothing), "MD5OfMessageAttributes": (NullOrUndefined Nothing), "MessageAttributes": (NullOrUndefined Nothing), "MessageId": (NullOrUndefined Nothing), "ReceiptHandle": (NullOrUndefined Nothing) }
+newMessage  = Message { "Attributes": Nothing, "Body": Nothing, "MD5OfBody": Nothing, "MD5OfMessageAttributes": Nothing, "MessageAttributes": Nothing, "MessageId": Nothing, "ReceiptHandle": Nothing }
 
 -- | Constructs Message's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newMessage' :: ( { "MessageId" :: NullOrUndefined (String) , "ReceiptHandle" :: NullOrUndefined (String) , "MD5OfBody" :: NullOrUndefined (String) , "Body" :: NullOrUndefined (String) , "Attributes" :: NullOrUndefined (MessageSystemAttributeMap) , "MD5OfMessageAttributes" :: NullOrUndefined (String) , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) } -> {"MessageId" :: NullOrUndefined (String) , "ReceiptHandle" :: NullOrUndefined (String) , "MD5OfBody" :: NullOrUndefined (String) , "Body" :: NullOrUndefined (String) , "Attributes" :: NullOrUndefined (MessageSystemAttributeMap) , "MD5OfMessageAttributes" :: NullOrUndefined (String) , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) } ) -> Message
-newMessage'  customize = (Message <<< customize) { "Attributes": (NullOrUndefined Nothing), "Body": (NullOrUndefined Nothing), "MD5OfBody": (NullOrUndefined Nothing), "MD5OfMessageAttributes": (NullOrUndefined Nothing), "MessageAttributes": (NullOrUndefined Nothing), "MessageId": (NullOrUndefined Nothing), "ReceiptHandle": (NullOrUndefined Nothing) }
+newMessage' :: ( { "MessageId" :: Maybe (String) , "ReceiptHandle" :: Maybe (String) , "MD5OfBody" :: Maybe (String) , "Body" :: Maybe (String) , "Attributes" :: Maybe (MessageSystemAttributeMap) , "MD5OfMessageAttributes" :: Maybe (String) , "MessageAttributes" :: Maybe (MessageBodyAttributeMap) } -> {"MessageId" :: Maybe (String) , "ReceiptHandle" :: Maybe (String) , "MD5OfBody" :: Maybe (String) , "Body" :: Maybe (String) , "Attributes" :: Maybe (MessageSystemAttributeMap) , "MD5OfMessageAttributes" :: Maybe (String) , "MessageAttributes" :: Maybe (MessageBodyAttributeMap) } ) -> Message
+newMessage'  customize = (Message <<< customize) { "Attributes": Nothing, "Body": Nothing, "MD5OfBody": Nothing, "MD5OfMessageAttributes": Nothing, "MessageAttributes": Nothing, "MessageId": Nothing, "ReceiptHandle": Nothing }
 
 
 
@@ -766,10 +765,10 @@ instance encodeMessageAttributeNameList :: Encode MessageAttributeNameList where
 
 -- | <p>The user-specified message attribute value. For string data types, the <code>Value</code> attribute has the same restrictions on the content as the message body. For more information, see <code> <a>SendMessage</a>.</code> </p> <p> <code>Name</code>, <code>type</code>, <code>value</code> and the message body must not be empty or null. All parts of the message attribute, including <code>Name</code>, <code>Type</code>, and <code>Value</code>, are part of the message size restriction (256 KB or 262,144 bytes).</p>
 newtype MessageAttributeValue = MessageAttributeValue 
-  { "StringValue" :: NullOrUndefined (String)
-  , "BinaryValue" :: NullOrUndefined (Binary)
-  , "StringListValues" :: NullOrUndefined (StringList)
-  , "BinaryListValues" :: NullOrUndefined (BinaryList)
+  { "StringValue" :: Maybe (String)
+  , "BinaryValue" :: Maybe (Binary)
+  , "StringListValues" :: Maybe (StringList)
+  , "BinaryListValues" :: Maybe (BinaryList)
   , "DataType" :: (String)
   }
 derive instance newtypeMessageAttributeValue :: Newtype MessageAttributeValue _
@@ -780,12 +779,12 @@ instance encodeMessageAttributeValue :: Encode MessageAttributeValue where encod
 
 -- | Constructs MessageAttributeValue from required parameters
 newMessageAttributeValue :: String -> MessageAttributeValue
-newMessageAttributeValue _DataType = MessageAttributeValue { "DataType": _DataType, "BinaryListValues": (NullOrUndefined Nothing), "BinaryValue": (NullOrUndefined Nothing), "StringListValues": (NullOrUndefined Nothing), "StringValue": (NullOrUndefined Nothing) }
+newMessageAttributeValue _DataType = MessageAttributeValue { "DataType": _DataType, "BinaryListValues": Nothing, "BinaryValue": Nothing, "StringListValues": Nothing, "StringValue": Nothing }
 
 -- | Constructs MessageAttributeValue's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newMessageAttributeValue' :: String -> ( { "StringValue" :: NullOrUndefined (String) , "BinaryValue" :: NullOrUndefined (Binary) , "StringListValues" :: NullOrUndefined (StringList) , "BinaryListValues" :: NullOrUndefined (BinaryList) , "DataType" :: (String) } -> {"StringValue" :: NullOrUndefined (String) , "BinaryValue" :: NullOrUndefined (Binary) , "StringListValues" :: NullOrUndefined (StringList) , "BinaryListValues" :: NullOrUndefined (BinaryList) , "DataType" :: (String) } ) -> MessageAttributeValue
-newMessageAttributeValue' _DataType customize = (MessageAttributeValue <<< customize) { "DataType": _DataType, "BinaryListValues": (NullOrUndefined Nothing), "BinaryValue": (NullOrUndefined Nothing), "StringListValues": (NullOrUndefined Nothing), "StringValue": (NullOrUndefined Nothing) }
+newMessageAttributeValue' :: String -> ( { "StringValue" :: Maybe (String) , "BinaryValue" :: Maybe (Binary) , "StringListValues" :: Maybe (StringList) , "BinaryListValues" :: Maybe (BinaryList) , "DataType" :: (String) } -> {"StringValue" :: Maybe (String) , "BinaryValue" :: Maybe (Binary) , "StringListValues" :: Maybe (StringList) , "BinaryListValues" :: Maybe (BinaryList) , "DataType" :: (String) } ) -> MessageAttributeValue
+newMessageAttributeValue' _DataType customize = (MessageAttributeValue <<< customize) { "DataType": _DataType, "BinaryListValues": Nothing, "BinaryValue": Nothing, "StringListValues": Nothing, "StringValue": Nothing }
 
 
 
@@ -946,12 +945,12 @@ instance encodeReceiptHandleIsInvalid :: Encode ReceiptHandleIsInvalid where enc
 -- | <p/>
 newtype ReceiveMessageRequest = ReceiveMessageRequest 
   { "QueueUrl" :: (String)
-  , "AttributeNames" :: NullOrUndefined (AttributeNameList)
-  , "MessageAttributeNames" :: NullOrUndefined (MessageAttributeNameList)
-  , "MaxNumberOfMessages" :: NullOrUndefined (Int)
-  , "VisibilityTimeout" :: NullOrUndefined (Int)
-  , "WaitTimeSeconds" :: NullOrUndefined (Int)
-  , "ReceiveRequestAttemptId" :: NullOrUndefined (String)
+  , "AttributeNames" :: Maybe (AttributeNameList)
+  , "MessageAttributeNames" :: Maybe (MessageAttributeNameList)
+  , "MaxNumberOfMessages" :: Maybe (Int)
+  , "VisibilityTimeout" :: Maybe (Int)
+  , "WaitTimeSeconds" :: Maybe (Int)
+  , "ReceiveRequestAttemptId" :: Maybe (String)
   }
 derive instance newtypeReceiveMessageRequest :: Newtype ReceiveMessageRequest _
 derive instance repGenericReceiveMessageRequest :: Generic ReceiveMessageRequest _
@@ -961,18 +960,18 @@ instance encodeReceiveMessageRequest :: Encode ReceiveMessageRequest where encod
 
 -- | Constructs ReceiveMessageRequest from required parameters
 newReceiveMessageRequest :: String -> ReceiveMessageRequest
-newReceiveMessageRequest _QueueUrl = ReceiveMessageRequest { "QueueUrl": _QueueUrl, "AttributeNames": (NullOrUndefined Nothing), "MaxNumberOfMessages": (NullOrUndefined Nothing), "MessageAttributeNames": (NullOrUndefined Nothing), "ReceiveRequestAttemptId": (NullOrUndefined Nothing), "VisibilityTimeout": (NullOrUndefined Nothing), "WaitTimeSeconds": (NullOrUndefined Nothing) }
+newReceiveMessageRequest _QueueUrl = ReceiveMessageRequest { "QueueUrl": _QueueUrl, "AttributeNames": Nothing, "MaxNumberOfMessages": Nothing, "MessageAttributeNames": Nothing, "ReceiveRequestAttemptId": Nothing, "VisibilityTimeout": Nothing, "WaitTimeSeconds": Nothing }
 
 -- | Constructs ReceiveMessageRequest's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newReceiveMessageRequest' :: String -> ( { "QueueUrl" :: (String) , "AttributeNames" :: NullOrUndefined (AttributeNameList) , "MessageAttributeNames" :: NullOrUndefined (MessageAttributeNameList) , "MaxNumberOfMessages" :: NullOrUndefined (Int) , "VisibilityTimeout" :: NullOrUndefined (Int) , "WaitTimeSeconds" :: NullOrUndefined (Int) , "ReceiveRequestAttemptId" :: NullOrUndefined (String) } -> {"QueueUrl" :: (String) , "AttributeNames" :: NullOrUndefined (AttributeNameList) , "MessageAttributeNames" :: NullOrUndefined (MessageAttributeNameList) , "MaxNumberOfMessages" :: NullOrUndefined (Int) , "VisibilityTimeout" :: NullOrUndefined (Int) , "WaitTimeSeconds" :: NullOrUndefined (Int) , "ReceiveRequestAttemptId" :: NullOrUndefined (String) } ) -> ReceiveMessageRequest
-newReceiveMessageRequest' _QueueUrl customize = (ReceiveMessageRequest <<< customize) { "QueueUrl": _QueueUrl, "AttributeNames": (NullOrUndefined Nothing), "MaxNumberOfMessages": (NullOrUndefined Nothing), "MessageAttributeNames": (NullOrUndefined Nothing), "ReceiveRequestAttemptId": (NullOrUndefined Nothing), "VisibilityTimeout": (NullOrUndefined Nothing), "WaitTimeSeconds": (NullOrUndefined Nothing) }
+newReceiveMessageRequest' :: String -> ( { "QueueUrl" :: (String) , "AttributeNames" :: Maybe (AttributeNameList) , "MessageAttributeNames" :: Maybe (MessageAttributeNameList) , "MaxNumberOfMessages" :: Maybe (Int) , "VisibilityTimeout" :: Maybe (Int) , "WaitTimeSeconds" :: Maybe (Int) , "ReceiveRequestAttemptId" :: Maybe (String) } -> {"QueueUrl" :: (String) , "AttributeNames" :: Maybe (AttributeNameList) , "MessageAttributeNames" :: Maybe (MessageAttributeNameList) , "MaxNumberOfMessages" :: Maybe (Int) , "VisibilityTimeout" :: Maybe (Int) , "WaitTimeSeconds" :: Maybe (Int) , "ReceiveRequestAttemptId" :: Maybe (String) } ) -> ReceiveMessageRequest
+newReceiveMessageRequest' _QueueUrl customize = (ReceiveMessageRequest <<< customize) { "QueueUrl": _QueueUrl, "AttributeNames": Nothing, "MaxNumberOfMessages": Nothing, "MessageAttributeNames": Nothing, "ReceiveRequestAttemptId": Nothing, "VisibilityTimeout": Nothing, "WaitTimeSeconds": Nothing }
 
 
 
 -- | <p>A list of received messages.</p>
 newtype ReceiveMessageResult = ReceiveMessageResult 
-  { "Messages" :: NullOrUndefined (MessageList)
+  { "Messages" :: Maybe (MessageList)
   }
 derive instance newtypeReceiveMessageResult :: Newtype ReceiveMessageResult _
 derive instance repGenericReceiveMessageResult :: Generic ReceiveMessageResult _
@@ -982,12 +981,12 @@ instance encodeReceiveMessageResult :: Encode ReceiveMessageResult where encode 
 
 -- | Constructs ReceiveMessageResult from required parameters
 newReceiveMessageResult :: ReceiveMessageResult
-newReceiveMessageResult  = ReceiveMessageResult { "Messages": (NullOrUndefined Nothing) }
+newReceiveMessageResult  = ReceiveMessageResult { "Messages": Nothing }
 
 -- | Constructs ReceiveMessageResult's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newReceiveMessageResult' :: ( { "Messages" :: NullOrUndefined (MessageList) } -> {"Messages" :: NullOrUndefined (MessageList) } ) -> ReceiveMessageResult
-newReceiveMessageResult'  customize = (ReceiveMessageResult <<< customize) { "Messages": (NullOrUndefined Nothing) }
+newReceiveMessageResult' :: ( { "Messages" :: Maybe (MessageList) } -> {"Messages" :: Maybe (MessageList) } ) -> ReceiveMessageResult
+newReceiveMessageResult'  customize = (ReceiveMessageResult <<< customize) { "Messages": Nothing }
 
 
 
@@ -1039,10 +1038,10 @@ newSendMessageBatchRequest' _Entries _QueueUrl customize = (SendMessageBatchRequ
 newtype SendMessageBatchRequestEntry = SendMessageBatchRequestEntry 
   { "Id" :: (String)
   , "MessageBody" :: (String)
-  , "DelaySeconds" :: NullOrUndefined (Int)
-  , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap)
-  , "MessageDeduplicationId" :: NullOrUndefined (String)
-  , "MessageGroupId" :: NullOrUndefined (String)
+  , "DelaySeconds" :: Maybe (Int)
+  , "MessageAttributes" :: Maybe (MessageBodyAttributeMap)
+  , "MessageDeduplicationId" :: Maybe (String)
+  , "MessageGroupId" :: Maybe (String)
   }
 derive instance newtypeSendMessageBatchRequestEntry :: Newtype SendMessageBatchRequestEntry _
 derive instance repGenericSendMessageBatchRequestEntry :: Generic SendMessageBatchRequestEntry _
@@ -1052,12 +1051,12 @@ instance encodeSendMessageBatchRequestEntry :: Encode SendMessageBatchRequestEnt
 
 -- | Constructs SendMessageBatchRequestEntry from required parameters
 newSendMessageBatchRequestEntry :: String -> String -> SendMessageBatchRequestEntry
-newSendMessageBatchRequestEntry _Id _MessageBody = SendMessageBatchRequestEntry { "Id": _Id, "MessageBody": _MessageBody, "DelaySeconds": (NullOrUndefined Nothing), "MessageAttributes": (NullOrUndefined Nothing), "MessageDeduplicationId": (NullOrUndefined Nothing), "MessageGroupId": (NullOrUndefined Nothing) }
+newSendMessageBatchRequestEntry _Id _MessageBody = SendMessageBatchRequestEntry { "Id": _Id, "MessageBody": _MessageBody, "DelaySeconds": Nothing, "MessageAttributes": Nothing, "MessageDeduplicationId": Nothing, "MessageGroupId": Nothing }
 
 -- | Constructs SendMessageBatchRequestEntry's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSendMessageBatchRequestEntry' :: String -> String -> ( { "Id" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: NullOrUndefined (Int) , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) , "MessageDeduplicationId" :: NullOrUndefined (String) , "MessageGroupId" :: NullOrUndefined (String) } -> {"Id" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: NullOrUndefined (Int) , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) , "MessageDeduplicationId" :: NullOrUndefined (String) , "MessageGroupId" :: NullOrUndefined (String) } ) -> SendMessageBatchRequestEntry
-newSendMessageBatchRequestEntry' _Id _MessageBody customize = (SendMessageBatchRequestEntry <<< customize) { "Id": _Id, "MessageBody": _MessageBody, "DelaySeconds": (NullOrUndefined Nothing), "MessageAttributes": (NullOrUndefined Nothing), "MessageDeduplicationId": (NullOrUndefined Nothing), "MessageGroupId": (NullOrUndefined Nothing) }
+newSendMessageBatchRequestEntry' :: String -> String -> ( { "Id" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: Maybe (Int) , "MessageAttributes" :: Maybe (MessageBodyAttributeMap) , "MessageDeduplicationId" :: Maybe (String) , "MessageGroupId" :: Maybe (String) } -> {"Id" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: Maybe (Int) , "MessageAttributes" :: Maybe (MessageBodyAttributeMap) , "MessageDeduplicationId" :: Maybe (String) , "MessageGroupId" :: Maybe (String) } ) -> SendMessageBatchRequestEntry
+newSendMessageBatchRequestEntry' _Id _MessageBody customize = (SendMessageBatchRequestEntry <<< customize) { "Id": _Id, "MessageBody": _MessageBody, "DelaySeconds": Nothing, "MessageAttributes": Nothing, "MessageDeduplicationId": Nothing, "MessageGroupId": Nothing }
 
 
 
@@ -1097,8 +1096,8 @@ newtype SendMessageBatchResultEntry = SendMessageBatchResultEntry
   { "Id" :: (String)
   , "MessageId" :: (String)
   , "MD5OfMessageBody" :: (String)
-  , "MD5OfMessageAttributes" :: NullOrUndefined (String)
-  , "SequenceNumber" :: NullOrUndefined (String)
+  , "MD5OfMessageAttributes" :: Maybe (String)
+  , "SequenceNumber" :: Maybe (String)
   }
 derive instance newtypeSendMessageBatchResultEntry :: Newtype SendMessageBatchResultEntry _
 derive instance repGenericSendMessageBatchResultEntry :: Generic SendMessageBatchResultEntry _
@@ -1108,12 +1107,12 @@ instance encodeSendMessageBatchResultEntry :: Encode SendMessageBatchResultEntry
 
 -- | Constructs SendMessageBatchResultEntry from required parameters
 newSendMessageBatchResultEntry :: String -> String -> String -> SendMessageBatchResultEntry
-newSendMessageBatchResultEntry _Id _MD5OfMessageBody _MessageId = SendMessageBatchResultEntry { "Id": _Id, "MD5OfMessageBody": _MD5OfMessageBody, "MessageId": _MessageId, "MD5OfMessageAttributes": (NullOrUndefined Nothing), "SequenceNumber": (NullOrUndefined Nothing) }
+newSendMessageBatchResultEntry _Id _MD5OfMessageBody _MessageId = SendMessageBatchResultEntry { "Id": _Id, "MD5OfMessageBody": _MD5OfMessageBody, "MessageId": _MessageId, "MD5OfMessageAttributes": Nothing, "SequenceNumber": Nothing }
 
 -- | Constructs SendMessageBatchResultEntry's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSendMessageBatchResultEntry' :: String -> String -> String -> ( { "Id" :: (String) , "MessageId" :: (String) , "MD5OfMessageBody" :: (String) , "MD5OfMessageAttributes" :: NullOrUndefined (String) , "SequenceNumber" :: NullOrUndefined (String) } -> {"Id" :: (String) , "MessageId" :: (String) , "MD5OfMessageBody" :: (String) , "MD5OfMessageAttributes" :: NullOrUndefined (String) , "SequenceNumber" :: NullOrUndefined (String) } ) -> SendMessageBatchResultEntry
-newSendMessageBatchResultEntry' _Id _MD5OfMessageBody _MessageId customize = (SendMessageBatchResultEntry <<< customize) { "Id": _Id, "MD5OfMessageBody": _MD5OfMessageBody, "MessageId": _MessageId, "MD5OfMessageAttributes": (NullOrUndefined Nothing), "SequenceNumber": (NullOrUndefined Nothing) }
+newSendMessageBatchResultEntry' :: String -> String -> String -> ( { "Id" :: (String) , "MessageId" :: (String) , "MD5OfMessageBody" :: (String) , "MD5OfMessageAttributes" :: Maybe (String) , "SequenceNumber" :: Maybe (String) } -> {"Id" :: (String) , "MessageId" :: (String) , "MD5OfMessageBody" :: (String) , "MD5OfMessageAttributes" :: Maybe (String) , "SequenceNumber" :: Maybe (String) } ) -> SendMessageBatchResultEntry
+newSendMessageBatchResultEntry' _Id _MD5OfMessageBody _MessageId customize = (SendMessageBatchResultEntry <<< customize) { "Id": _Id, "MD5OfMessageBody": _MD5OfMessageBody, "MessageId": _MessageId, "MD5OfMessageAttributes": Nothing, "SequenceNumber": Nothing }
 
 
 
@@ -1130,10 +1129,10 @@ instance encodeSendMessageBatchResultEntryList :: Encode SendMessageBatchResultE
 newtype SendMessageRequest = SendMessageRequest 
   { "QueueUrl" :: (String)
   , "MessageBody" :: (String)
-  , "DelaySeconds" :: NullOrUndefined (Int)
-  , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap)
-  , "MessageDeduplicationId" :: NullOrUndefined (String)
-  , "MessageGroupId" :: NullOrUndefined (String)
+  , "DelaySeconds" :: Maybe (Int)
+  , "MessageAttributes" :: Maybe (MessageBodyAttributeMap)
+  , "MessageDeduplicationId" :: Maybe (String)
+  , "MessageGroupId" :: Maybe (String)
   }
 derive instance newtypeSendMessageRequest :: Newtype SendMessageRequest _
 derive instance repGenericSendMessageRequest :: Generic SendMessageRequest _
@@ -1143,21 +1142,21 @@ instance encodeSendMessageRequest :: Encode SendMessageRequest where encode = ge
 
 -- | Constructs SendMessageRequest from required parameters
 newSendMessageRequest :: String -> String -> SendMessageRequest
-newSendMessageRequest _MessageBody _QueueUrl = SendMessageRequest { "MessageBody": _MessageBody, "QueueUrl": _QueueUrl, "DelaySeconds": (NullOrUndefined Nothing), "MessageAttributes": (NullOrUndefined Nothing), "MessageDeduplicationId": (NullOrUndefined Nothing), "MessageGroupId": (NullOrUndefined Nothing) }
+newSendMessageRequest _MessageBody _QueueUrl = SendMessageRequest { "MessageBody": _MessageBody, "QueueUrl": _QueueUrl, "DelaySeconds": Nothing, "MessageAttributes": Nothing, "MessageDeduplicationId": Nothing, "MessageGroupId": Nothing }
 
 -- | Constructs SendMessageRequest's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSendMessageRequest' :: String -> String -> ( { "QueueUrl" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: NullOrUndefined (Int) , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) , "MessageDeduplicationId" :: NullOrUndefined (String) , "MessageGroupId" :: NullOrUndefined (String) } -> {"QueueUrl" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: NullOrUndefined (Int) , "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) , "MessageDeduplicationId" :: NullOrUndefined (String) , "MessageGroupId" :: NullOrUndefined (String) } ) -> SendMessageRequest
-newSendMessageRequest' _MessageBody _QueueUrl customize = (SendMessageRequest <<< customize) { "MessageBody": _MessageBody, "QueueUrl": _QueueUrl, "DelaySeconds": (NullOrUndefined Nothing), "MessageAttributes": (NullOrUndefined Nothing), "MessageDeduplicationId": (NullOrUndefined Nothing), "MessageGroupId": (NullOrUndefined Nothing) }
+newSendMessageRequest' :: String -> String -> ( { "QueueUrl" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: Maybe (Int) , "MessageAttributes" :: Maybe (MessageBodyAttributeMap) , "MessageDeduplicationId" :: Maybe (String) , "MessageGroupId" :: Maybe (String) } -> {"QueueUrl" :: (String) , "MessageBody" :: (String) , "DelaySeconds" :: Maybe (Int) , "MessageAttributes" :: Maybe (MessageBodyAttributeMap) , "MessageDeduplicationId" :: Maybe (String) , "MessageGroupId" :: Maybe (String) } ) -> SendMessageRequest
+newSendMessageRequest' _MessageBody _QueueUrl customize = (SendMessageRequest <<< customize) { "MessageBody": _MessageBody, "QueueUrl": _QueueUrl, "DelaySeconds": Nothing, "MessageAttributes": Nothing, "MessageDeduplicationId": Nothing, "MessageGroupId": Nothing }
 
 
 
 -- | <p>The <code>MD5OfMessageBody</code> and <code>MessageId</code> elements.</p>
 newtype SendMessageResult = SendMessageResult 
-  { "MD5OfMessageBody" :: NullOrUndefined (String)
-  , "MD5OfMessageAttributes" :: NullOrUndefined (String)
-  , "MessageId" :: NullOrUndefined (String)
-  , "SequenceNumber" :: NullOrUndefined (String)
+  { "MD5OfMessageBody" :: Maybe (String)
+  , "MD5OfMessageAttributes" :: Maybe (String)
+  , "MessageId" :: Maybe (String)
+  , "SequenceNumber" :: Maybe (String)
   }
 derive instance newtypeSendMessageResult :: Newtype SendMessageResult _
 derive instance repGenericSendMessageResult :: Generic SendMessageResult _
@@ -1167,12 +1166,12 @@ instance encodeSendMessageResult :: Encode SendMessageResult where encode = gene
 
 -- | Constructs SendMessageResult from required parameters
 newSendMessageResult :: SendMessageResult
-newSendMessageResult  = SendMessageResult { "MD5OfMessageAttributes": (NullOrUndefined Nothing), "MD5OfMessageBody": (NullOrUndefined Nothing), "MessageId": (NullOrUndefined Nothing), "SequenceNumber": (NullOrUndefined Nothing) }
+newSendMessageResult  = SendMessageResult { "MD5OfMessageAttributes": Nothing, "MD5OfMessageBody": Nothing, "MessageId": Nothing, "SequenceNumber": Nothing }
 
 -- | Constructs SendMessageResult's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSendMessageResult' :: ( { "MD5OfMessageBody" :: NullOrUndefined (String) , "MD5OfMessageAttributes" :: NullOrUndefined (String) , "MessageId" :: NullOrUndefined (String) , "SequenceNumber" :: NullOrUndefined (String) } -> {"MD5OfMessageBody" :: NullOrUndefined (String) , "MD5OfMessageAttributes" :: NullOrUndefined (String) , "MessageId" :: NullOrUndefined (String) , "SequenceNumber" :: NullOrUndefined (String) } ) -> SendMessageResult
-newSendMessageResult'  customize = (SendMessageResult <<< customize) { "MD5OfMessageAttributes": (NullOrUndefined Nothing), "MD5OfMessageBody": (NullOrUndefined Nothing), "MessageId": (NullOrUndefined Nothing), "SequenceNumber": (NullOrUndefined Nothing) }
+newSendMessageResult' :: ( { "MD5OfMessageBody" :: Maybe (String) , "MD5OfMessageAttributes" :: Maybe (String) , "MessageId" :: Maybe (String) , "SequenceNumber" :: Maybe (String) } -> {"MD5OfMessageBody" :: Maybe (String) , "MD5OfMessageAttributes" :: Maybe (String) , "MessageId" :: Maybe (String) , "SequenceNumber" :: Maybe (String) } ) -> SendMessageResult
+newSendMessageResult'  customize = (SendMessageResult <<< customize) { "MD5OfMessageAttributes": Nothing, "MD5OfMessageBody": Nothing, "MessageId": Nothing, "SequenceNumber": Nothing }
 
 
 

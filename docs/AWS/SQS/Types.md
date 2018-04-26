@@ -128,7 +128,7 @@ Encode BatchRequestTooLong
 
 ``` purescript
 newtype BatchResultErrorEntry
-  = BatchResultErrorEntry { "Id" :: String, "SenderFault" :: Boolean, "Code" :: String, "Message" :: NullOrUndefined (String) }
+  = BatchResultErrorEntry { "Id" :: String, "SenderFault" :: Boolean, "Code" :: String, "Message" :: Maybe (String) }
 ```
 
 <p>This is used in the responses of batch API to give a detailed description of the result of an action on each entry in the request.</p>
@@ -153,7 +153,7 @@ Constructs BatchResultErrorEntry from required parameters
 #### `newBatchResultErrorEntry'`
 
 ``` purescript
-newBatchResultErrorEntry' :: String -> String -> Boolean -> ({ "Id" :: String, "SenderFault" :: Boolean, "Code" :: String, "Message" :: NullOrUndefined (String) } -> { "Id" :: String, "SenderFault" :: Boolean, "Code" :: String, "Message" :: NullOrUndefined (String) }) -> BatchResultErrorEntry
+newBatchResultErrorEntry' :: String -> String -> Boolean -> ({ "Id" :: String, "SenderFault" :: Boolean, "Code" :: String, "Message" :: Maybe (String) } -> { "Id" :: String, "SenderFault" :: Boolean, "Code" :: String, "Message" :: Maybe (String) }) -> BatchResultErrorEntry
 ```
 
 Constructs BatchResultErrorEntry's fields from required parameters
@@ -244,7 +244,7 @@ Constructs ChangeMessageVisibilityBatchRequest's fields from required parameters
 
 ``` purescript
 newtype ChangeMessageVisibilityBatchRequestEntry
-  = ChangeMessageVisibilityBatchRequestEntry { "Id" :: String, "ReceiptHandle" :: String, "VisibilityTimeout" :: NullOrUndefined (Int) }
+  = ChangeMessageVisibilityBatchRequestEntry { "Id" :: String, "ReceiptHandle" :: String, "VisibilityTimeout" :: Maybe (Int) }
 ```
 
 <p>Encloses a receipt handle and an entry id for each message in <code> <a>ChangeMessageVisibilityBatch</a>.</code> </p> <important> <p>All of the following list parameters must be prefixed with <code>ChangeMessageVisibilityBatchRequestEntry.n</code>, where <code>n</code> is an integer value starting with <code>1</code>. For example, a parameter list for this action might look like this:</p> </important> <p> <code>&amp;amp;ChangeMessageVisibilityBatchRequestEntry.1.Id=change_visibility_msg_2</code> </p> <p> <code>&amp;amp;ChangeMessageVisibilityBatchRequestEntry.1.ReceiptHandle=&lt;replaceable&gt;Your_Receipt_Handle&lt;/replaceable&gt;</code> </p> <p> <code>&amp;amp;ChangeMessageVisibilityBatchRequestEntry.1.VisibilityTimeout=45</code> </p>
@@ -269,7 +269,7 @@ Constructs ChangeMessageVisibilityBatchRequestEntry from required parameters
 #### `newChangeMessageVisibilityBatchRequestEntry'`
 
 ``` purescript
-newChangeMessageVisibilityBatchRequestEntry' :: String -> String -> ({ "Id" :: String, "ReceiptHandle" :: String, "VisibilityTimeout" :: NullOrUndefined (Int) } -> { "Id" :: String, "ReceiptHandle" :: String, "VisibilityTimeout" :: NullOrUndefined (Int) }) -> ChangeMessageVisibilityBatchRequestEntry
+newChangeMessageVisibilityBatchRequestEntry' :: String -> String -> ({ "Id" :: String, "ReceiptHandle" :: String, "VisibilityTimeout" :: Maybe (Int) } -> { "Id" :: String, "ReceiptHandle" :: String, "VisibilityTimeout" :: Maybe (Int) }) -> ChangeMessageVisibilityBatchRequestEntry
 ```
 
 Constructs ChangeMessageVisibilityBatchRequestEntry's fields from required parameters
@@ -410,7 +410,7 @@ Constructs ChangeMessageVisibilityRequest's fields from required parameters
 
 ``` purescript
 newtype CreateQueueRequest
-  = CreateQueueRequest { "QueueName" :: String, "Attributes" :: NullOrUndefined (QueueAttributeMap) }
+  = CreateQueueRequest { "QueueName" :: String, "Attributes" :: Maybe (QueueAttributeMap) }
 ```
 
 <p/>
@@ -435,7 +435,7 @@ Constructs CreateQueueRequest from required parameters
 #### `newCreateQueueRequest'`
 
 ``` purescript
-newCreateQueueRequest' :: String -> ({ "QueueName" :: String, "Attributes" :: NullOrUndefined (QueueAttributeMap) } -> { "QueueName" :: String, "Attributes" :: NullOrUndefined (QueueAttributeMap) }) -> CreateQueueRequest
+newCreateQueueRequest' :: String -> ({ "QueueName" :: String, "Attributes" :: Maybe (QueueAttributeMap) } -> { "QueueName" :: String, "Attributes" :: Maybe (QueueAttributeMap) }) -> CreateQueueRequest
 ```
 
 Constructs CreateQueueRequest's fields from required parameters
@@ -444,7 +444,7 @@ Constructs CreateQueueRequest's fields from required parameters
 
 ``` purescript
 newtype CreateQueueResult
-  = CreateQueueResult { "QueueUrl" :: NullOrUndefined (String) }
+  = CreateQueueResult { "QueueUrl" :: Maybe (String) }
 ```
 
 <p>Returns the <code>QueueUrl</code> attribute of the created queue.</p>
@@ -469,7 +469,7 @@ Constructs CreateQueueResult from required parameters
 #### `newCreateQueueResult'`
 
 ``` purescript
-newCreateQueueResult' :: ({ "QueueUrl" :: NullOrUndefined (String) } -> { "QueueUrl" :: NullOrUndefined (String) }) -> CreateQueueResult
+newCreateQueueResult' :: ({ "QueueUrl" :: Maybe (String) } -> { "QueueUrl" :: Maybe (String) }) -> CreateQueueResult
 ```
 
 Constructs CreateQueueResult's fields from required parameters
@@ -732,7 +732,7 @@ Encode EmptyBatchRequest
 
 ``` purescript
 newtype GetQueueAttributesRequest
-  = GetQueueAttributesRequest { "QueueUrl" :: String, "AttributeNames" :: NullOrUndefined (AttributeNameList) }
+  = GetQueueAttributesRequest { "QueueUrl" :: String, "AttributeNames" :: Maybe (AttributeNameList) }
 ```
 
 <p/>
@@ -757,7 +757,7 @@ Constructs GetQueueAttributesRequest from required parameters
 #### `newGetQueueAttributesRequest'`
 
 ``` purescript
-newGetQueueAttributesRequest' :: String -> ({ "QueueUrl" :: String, "AttributeNames" :: NullOrUndefined (AttributeNameList) } -> { "QueueUrl" :: String, "AttributeNames" :: NullOrUndefined (AttributeNameList) }) -> GetQueueAttributesRequest
+newGetQueueAttributesRequest' :: String -> ({ "QueueUrl" :: String, "AttributeNames" :: Maybe (AttributeNameList) } -> { "QueueUrl" :: String, "AttributeNames" :: Maybe (AttributeNameList) }) -> GetQueueAttributesRequest
 ```
 
 Constructs GetQueueAttributesRequest's fields from required parameters
@@ -766,7 +766,7 @@ Constructs GetQueueAttributesRequest's fields from required parameters
 
 ``` purescript
 newtype GetQueueAttributesResult
-  = GetQueueAttributesResult { "Attributes" :: NullOrUndefined (QueueAttributeMap) }
+  = GetQueueAttributesResult { "Attributes" :: Maybe (QueueAttributeMap) }
 ```
 
 <p>A list of returned queue attributes.</p>
@@ -791,7 +791,7 @@ Constructs GetQueueAttributesResult from required parameters
 #### `newGetQueueAttributesResult'`
 
 ``` purescript
-newGetQueueAttributesResult' :: ({ "Attributes" :: NullOrUndefined (QueueAttributeMap) } -> { "Attributes" :: NullOrUndefined (QueueAttributeMap) }) -> GetQueueAttributesResult
+newGetQueueAttributesResult' :: ({ "Attributes" :: Maybe (QueueAttributeMap) } -> { "Attributes" :: Maybe (QueueAttributeMap) }) -> GetQueueAttributesResult
 ```
 
 Constructs GetQueueAttributesResult's fields from required parameters
@@ -800,7 +800,7 @@ Constructs GetQueueAttributesResult's fields from required parameters
 
 ``` purescript
 newtype GetQueueUrlRequest
-  = GetQueueUrlRequest { "QueueName" :: String, "QueueOwnerAWSAccountId" :: NullOrUndefined (String) }
+  = GetQueueUrlRequest { "QueueName" :: String, "QueueOwnerAWSAccountId" :: Maybe (String) }
 ```
 
 <p/>
@@ -825,7 +825,7 @@ Constructs GetQueueUrlRequest from required parameters
 #### `newGetQueueUrlRequest'`
 
 ``` purescript
-newGetQueueUrlRequest' :: String -> ({ "QueueName" :: String, "QueueOwnerAWSAccountId" :: NullOrUndefined (String) } -> { "QueueName" :: String, "QueueOwnerAWSAccountId" :: NullOrUndefined (String) }) -> GetQueueUrlRequest
+newGetQueueUrlRequest' :: String -> ({ "QueueName" :: String, "QueueOwnerAWSAccountId" :: Maybe (String) } -> { "QueueName" :: String, "QueueOwnerAWSAccountId" :: Maybe (String) }) -> GetQueueUrlRequest
 ```
 
 Constructs GetQueueUrlRequest's fields from required parameters
@@ -834,7 +834,7 @@ Constructs GetQueueUrlRequest's fields from required parameters
 
 ``` purescript
 newtype GetQueueUrlResult
-  = GetQueueUrlResult { "QueueUrl" :: NullOrUndefined (String) }
+  = GetQueueUrlResult { "QueueUrl" :: Maybe (String) }
 ```
 
 <p>For more information, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UnderstandingResponses.html">Responses</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p>
@@ -859,7 +859,7 @@ Constructs GetQueueUrlResult from required parameters
 #### `newGetQueueUrlResult'`
 
 ``` purescript
-newGetQueueUrlResult' :: ({ "QueueUrl" :: NullOrUndefined (String) } -> { "QueueUrl" :: NullOrUndefined (String) }) -> GetQueueUrlResult
+newGetQueueUrlResult' :: ({ "QueueUrl" :: Maybe (String) } -> { "QueueUrl" :: Maybe (String) }) -> GetQueueUrlResult
 ```
 
 Constructs GetQueueUrlResult's fields from required parameters
@@ -1040,7 +1040,7 @@ Constructs ListQueueTagsRequest's fields from required parameters
 
 ``` purescript
 newtype ListQueueTagsResult
-  = ListQueueTagsResult { "Tags" :: NullOrUndefined (TagMap) }
+  = ListQueueTagsResult { "Tags" :: Maybe (TagMap) }
 ```
 
 ##### Instances
@@ -1063,7 +1063,7 @@ Constructs ListQueueTagsResult from required parameters
 #### `newListQueueTagsResult'`
 
 ``` purescript
-newListQueueTagsResult' :: ({ "Tags" :: NullOrUndefined (TagMap) } -> { "Tags" :: NullOrUndefined (TagMap) }) -> ListQueueTagsResult
+newListQueueTagsResult' :: ({ "Tags" :: Maybe (TagMap) } -> { "Tags" :: Maybe (TagMap) }) -> ListQueueTagsResult
 ```
 
 Constructs ListQueueTagsResult's fields from required parameters
@@ -1072,7 +1072,7 @@ Constructs ListQueueTagsResult's fields from required parameters
 
 ``` purescript
 newtype ListQueuesRequest
-  = ListQueuesRequest { "QueueNamePrefix" :: NullOrUndefined (String) }
+  = ListQueuesRequest { "QueueNamePrefix" :: Maybe (String) }
 ```
 
 <p/>
@@ -1097,7 +1097,7 @@ Constructs ListQueuesRequest from required parameters
 #### `newListQueuesRequest'`
 
 ``` purescript
-newListQueuesRequest' :: ({ "QueueNamePrefix" :: NullOrUndefined (String) } -> { "QueueNamePrefix" :: NullOrUndefined (String) }) -> ListQueuesRequest
+newListQueuesRequest' :: ({ "QueueNamePrefix" :: Maybe (String) } -> { "QueueNamePrefix" :: Maybe (String) }) -> ListQueuesRequest
 ```
 
 Constructs ListQueuesRequest's fields from required parameters
@@ -1106,7 +1106,7 @@ Constructs ListQueuesRequest's fields from required parameters
 
 ``` purescript
 newtype ListQueuesResult
-  = ListQueuesResult { "QueueUrls" :: NullOrUndefined (QueueUrlList) }
+  = ListQueuesResult { "QueueUrls" :: Maybe (QueueUrlList) }
 ```
 
 <p>A list of your queues.</p>
@@ -1131,7 +1131,7 @@ Constructs ListQueuesResult from required parameters
 #### `newListQueuesResult'`
 
 ``` purescript
-newListQueuesResult' :: ({ "QueueUrls" :: NullOrUndefined (QueueUrlList) } -> { "QueueUrls" :: NullOrUndefined (QueueUrlList) }) -> ListQueuesResult
+newListQueuesResult' :: ({ "QueueUrls" :: Maybe (QueueUrlList) } -> { "QueueUrls" :: Maybe (QueueUrlList) }) -> ListQueuesResult
 ```
 
 Constructs ListQueuesResult's fields from required parameters
@@ -1140,7 +1140,7 @@ Constructs ListQueuesResult's fields from required parameters
 
 ``` purescript
 newtype Message
-  = Message { "MessageId" :: NullOrUndefined (String), "ReceiptHandle" :: NullOrUndefined (String), "MD5OfBody" :: NullOrUndefined (String), "Body" :: NullOrUndefined (String), "Attributes" :: NullOrUndefined (MessageSystemAttributeMap), "MD5OfMessageAttributes" :: NullOrUndefined (String), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) }
+  = Message { "MessageId" :: Maybe (String), "ReceiptHandle" :: Maybe (String), "MD5OfBody" :: Maybe (String), "Body" :: Maybe (String), "Attributes" :: Maybe (MessageSystemAttributeMap), "MD5OfMessageAttributes" :: Maybe (String), "MessageAttributes" :: Maybe (MessageBodyAttributeMap) }
 ```
 
 <p>An Amazon SQS message.</p>
@@ -1165,7 +1165,7 @@ Constructs Message from required parameters
 #### `newMessage'`
 
 ``` purescript
-newMessage' :: ({ "MessageId" :: NullOrUndefined (String), "ReceiptHandle" :: NullOrUndefined (String), "MD5OfBody" :: NullOrUndefined (String), "Body" :: NullOrUndefined (String), "Attributes" :: NullOrUndefined (MessageSystemAttributeMap), "MD5OfMessageAttributes" :: NullOrUndefined (String), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) } -> { "MessageId" :: NullOrUndefined (String), "ReceiptHandle" :: NullOrUndefined (String), "MD5OfBody" :: NullOrUndefined (String), "Body" :: NullOrUndefined (String), "Attributes" :: NullOrUndefined (MessageSystemAttributeMap), "MD5OfMessageAttributes" :: NullOrUndefined (String), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap) }) -> Message
+newMessage' :: ({ "MessageId" :: Maybe (String), "ReceiptHandle" :: Maybe (String), "MD5OfBody" :: Maybe (String), "Body" :: Maybe (String), "Attributes" :: Maybe (MessageSystemAttributeMap), "MD5OfMessageAttributes" :: Maybe (String), "MessageAttributes" :: Maybe (MessageBodyAttributeMap) } -> { "MessageId" :: Maybe (String), "ReceiptHandle" :: Maybe (String), "MD5OfBody" :: Maybe (String), "Body" :: Maybe (String), "Attributes" :: Maybe (MessageSystemAttributeMap), "MD5OfMessageAttributes" :: Maybe (String), "MessageAttributes" :: Maybe (MessageBodyAttributeMap) }) -> Message
 ```
 
 Constructs Message's fields from required parameters
@@ -1206,7 +1206,7 @@ Encode MessageAttributeNameList
 
 ``` purescript
 newtype MessageAttributeValue
-  = MessageAttributeValue { "StringValue" :: NullOrUndefined (String), "BinaryValue" :: NullOrUndefined (Binary), "StringListValues" :: NullOrUndefined (StringList), "BinaryListValues" :: NullOrUndefined (BinaryList), "DataType" :: String }
+  = MessageAttributeValue { "StringValue" :: Maybe (String), "BinaryValue" :: Maybe (Binary), "StringListValues" :: Maybe (StringList), "BinaryListValues" :: Maybe (BinaryList), "DataType" :: String }
 ```
 
 <p>The user-specified message attribute value. For string data types, the <code>Value</code> attribute has the same restrictions on the content as the message body. For more information, see <code> <a>SendMessage</a>.</code> </p> <p> <code>Name</code>, <code>type</code>, <code>value</code> and the message body must not be empty or null. All parts of the message attribute, including <code>Name</code>, <code>Type</code>, and <code>Value</code>, are part of the message size restriction (256 KB or 262,144 bytes).</p>
@@ -1231,7 +1231,7 @@ Constructs MessageAttributeValue from required parameters
 #### `newMessageAttributeValue'`
 
 ``` purescript
-newMessageAttributeValue' :: String -> ({ "StringValue" :: NullOrUndefined (String), "BinaryValue" :: NullOrUndefined (Binary), "StringListValues" :: NullOrUndefined (StringList), "BinaryListValues" :: NullOrUndefined (BinaryList), "DataType" :: String } -> { "StringValue" :: NullOrUndefined (String), "BinaryValue" :: NullOrUndefined (Binary), "StringListValues" :: NullOrUndefined (StringList), "BinaryListValues" :: NullOrUndefined (BinaryList), "DataType" :: String }) -> MessageAttributeValue
+newMessageAttributeValue' :: String -> ({ "StringValue" :: Maybe (String), "BinaryValue" :: Maybe (Binary), "StringListValues" :: Maybe (StringList), "BinaryListValues" :: Maybe (BinaryList), "DataType" :: String } -> { "StringValue" :: Maybe (String), "BinaryValue" :: Maybe (Binary), "StringListValues" :: Maybe (StringList), "BinaryListValues" :: Maybe (BinaryList), "DataType" :: String }) -> MessageAttributeValue
 ```
 
 Constructs MessageAttributeValue's fields from required parameters
@@ -1512,7 +1512,7 @@ Encode ReceiptHandleIsInvalid
 
 ``` purescript
 newtype ReceiveMessageRequest
-  = ReceiveMessageRequest { "QueueUrl" :: String, "AttributeNames" :: NullOrUndefined (AttributeNameList), "MessageAttributeNames" :: NullOrUndefined (MessageAttributeNameList), "MaxNumberOfMessages" :: NullOrUndefined (Int), "VisibilityTimeout" :: NullOrUndefined (Int), "WaitTimeSeconds" :: NullOrUndefined (Int), "ReceiveRequestAttemptId" :: NullOrUndefined (String) }
+  = ReceiveMessageRequest { "QueueUrl" :: String, "AttributeNames" :: Maybe (AttributeNameList), "MessageAttributeNames" :: Maybe (MessageAttributeNameList), "MaxNumberOfMessages" :: Maybe (Int), "VisibilityTimeout" :: Maybe (Int), "WaitTimeSeconds" :: Maybe (Int), "ReceiveRequestAttemptId" :: Maybe (String) }
 ```
 
 <p/>
@@ -1537,7 +1537,7 @@ Constructs ReceiveMessageRequest from required parameters
 #### `newReceiveMessageRequest'`
 
 ``` purescript
-newReceiveMessageRequest' :: String -> ({ "QueueUrl" :: String, "AttributeNames" :: NullOrUndefined (AttributeNameList), "MessageAttributeNames" :: NullOrUndefined (MessageAttributeNameList), "MaxNumberOfMessages" :: NullOrUndefined (Int), "VisibilityTimeout" :: NullOrUndefined (Int), "WaitTimeSeconds" :: NullOrUndefined (Int), "ReceiveRequestAttemptId" :: NullOrUndefined (String) } -> { "QueueUrl" :: String, "AttributeNames" :: NullOrUndefined (AttributeNameList), "MessageAttributeNames" :: NullOrUndefined (MessageAttributeNameList), "MaxNumberOfMessages" :: NullOrUndefined (Int), "VisibilityTimeout" :: NullOrUndefined (Int), "WaitTimeSeconds" :: NullOrUndefined (Int), "ReceiveRequestAttemptId" :: NullOrUndefined (String) }) -> ReceiveMessageRequest
+newReceiveMessageRequest' :: String -> ({ "QueueUrl" :: String, "AttributeNames" :: Maybe (AttributeNameList), "MessageAttributeNames" :: Maybe (MessageAttributeNameList), "MaxNumberOfMessages" :: Maybe (Int), "VisibilityTimeout" :: Maybe (Int), "WaitTimeSeconds" :: Maybe (Int), "ReceiveRequestAttemptId" :: Maybe (String) } -> { "QueueUrl" :: String, "AttributeNames" :: Maybe (AttributeNameList), "MessageAttributeNames" :: Maybe (MessageAttributeNameList), "MaxNumberOfMessages" :: Maybe (Int), "VisibilityTimeout" :: Maybe (Int), "WaitTimeSeconds" :: Maybe (Int), "ReceiveRequestAttemptId" :: Maybe (String) }) -> ReceiveMessageRequest
 ```
 
 Constructs ReceiveMessageRequest's fields from required parameters
@@ -1546,7 +1546,7 @@ Constructs ReceiveMessageRequest's fields from required parameters
 
 ``` purescript
 newtype ReceiveMessageResult
-  = ReceiveMessageResult { "Messages" :: NullOrUndefined (MessageList) }
+  = ReceiveMessageResult { "Messages" :: Maybe (MessageList) }
 ```
 
 <p>A list of received messages.</p>
@@ -1571,7 +1571,7 @@ Constructs ReceiveMessageResult from required parameters
 #### `newReceiveMessageResult'`
 
 ``` purescript
-newReceiveMessageResult' :: ({ "Messages" :: NullOrUndefined (MessageList) } -> { "Messages" :: NullOrUndefined (MessageList) }) -> ReceiveMessageResult
+newReceiveMessageResult' :: ({ "Messages" :: Maybe (MessageList) } -> { "Messages" :: Maybe (MessageList) }) -> ReceiveMessageResult
 ```
 
 Constructs ReceiveMessageResult's fields from required parameters
@@ -1648,7 +1648,7 @@ Constructs SendMessageBatchRequest's fields from required parameters
 
 ``` purescript
 newtype SendMessageBatchRequestEntry
-  = SendMessageBatchRequestEntry { "Id" :: String, "MessageBody" :: String, "DelaySeconds" :: NullOrUndefined (Int), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap), "MessageDeduplicationId" :: NullOrUndefined (String), "MessageGroupId" :: NullOrUndefined (String) }
+  = SendMessageBatchRequestEntry { "Id" :: String, "MessageBody" :: String, "DelaySeconds" :: Maybe (Int), "MessageAttributes" :: Maybe (MessageBodyAttributeMap), "MessageDeduplicationId" :: Maybe (String), "MessageGroupId" :: Maybe (String) }
 ```
 
 <p>Contains the details of a single Amazon SQS message along with an <code>Id</code>.</p>
@@ -1673,7 +1673,7 @@ Constructs SendMessageBatchRequestEntry from required parameters
 #### `newSendMessageBatchRequestEntry'`
 
 ``` purescript
-newSendMessageBatchRequestEntry' :: String -> String -> ({ "Id" :: String, "MessageBody" :: String, "DelaySeconds" :: NullOrUndefined (Int), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap), "MessageDeduplicationId" :: NullOrUndefined (String), "MessageGroupId" :: NullOrUndefined (String) } -> { "Id" :: String, "MessageBody" :: String, "DelaySeconds" :: NullOrUndefined (Int), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap), "MessageDeduplicationId" :: NullOrUndefined (String), "MessageGroupId" :: NullOrUndefined (String) }) -> SendMessageBatchRequestEntry
+newSendMessageBatchRequestEntry' :: String -> String -> ({ "Id" :: String, "MessageBody" :: String, "DelaySeconds" :: Maybe (Int), "MessageAttributes" :: Maybe (MessageBodyAttributeMap), "MessageDeduplicationId" :: Maybe (String), "MessageGroupId" :: Maybe (String) } -> { "Id" :: String, "MessageBody" :: String, "DelaySeconds" :: Maybe (Int), "MessageAttributes" :: Maybe (MessageBodyAttributeMap), "MessageDeduplicationId" :: Maybe (String), "MessageGroupId" :: Maybe (String) }) -> SendMessageBatchRequestEntry
 ```
 
 Constructs SendMessageBatchRequestEntry's fields from required parameters
@@ -1732,7 +1732,7 @@ Constructs SendMessageBatchResult's fields from required parameters
 
 ``` purescript
 newtype SendMessageBatchResultEntry
-  = SendMessageBatchResultEntry { "Id" :: String, "MessageId" :: String, "MD5OfMessageBody" :: String, "MD5OfMessageAttributes" :: NullOrUndefined (String), "SequenceNumber" :: NullOrUndefined (String) }
+  = SendMessageBatchResultEntry { "Id" :: String, "MessageId" :: String, "MD5OfMessageBody" :: String, "MD5OfMessageAttributes" :: Maybe (String), "SequenceNumber" :: Maybe (String) }
 ```
 
 <p>Encloses a <code>MessageId</code> for a successfully-enqueued message in a <code> <a>SendMessageBatch</a>.</code> </p>
@@ -1757,7 +1757,7 @@ Constructs SendMessageBatchResultEntry from required parameters
 #### `newSendMessageBatchResultEntry'`
 
 ``` purescript
-newSendMessageBatchResultEntry' :: String -> String -> String -> ({ "Id" :: String, "MessageId" :: String, "MD5OfMessageBody" :: String, "MD5OfMessageAttributes" :: NullOrUndefined (String), "SequenceNumber" :: NullOrUndefined (String) } -> { "Id" :: String, "MessageId" :: String, "MD5OfMessageBody" :: String, "MD5OfMessageAttributes" :: NullOrUndefined (String), "SequenceNumber" :: NullOrUndefined (String) }) -> SendMessageBatchResultEntry
+newSendMessageBatchResultEntry' :: String -> String -> String -> ({ "Id" :: String, "MessageId" :: String, "MD5OfMessageBody" :: String, "MD5OfMessageAttributes" :: Maybe (String), "SequenceNumber" :: Maybe (String) } -> { "Id" :: String, "MessageId" :: String, "MD5OfMessageBody" :: String, "MD5OfMessageAttributes" :: Maybe (String), "SequenceNumber" :: Maybe (String) }) -> SendMessageBatchResultEntry
 ```
 
 Constructs SendMessageBatchResultEntry's fields from required parameters
@@ -1782,7 +1782,7 @@ Encode SendMessageBatchResultEntryList
 
 ``` purescript
 newtype SendMessageRequest
-  = SendMessageRequest { "QueueUrl" :: String, "MessageBody" :: String, "DelaySeconds" :: NullOrUndefined (Int), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap), "MessageDeduplicationId" :: NullOrUndefined (String), "MessageGroupId" :: NullOrUndefined (String) }
+  = SendMessageRequest { "QueueUrl" :: String, "MessageBody" :: String, "DelaySeconds" :: Maybe (Int), "MessageAttributes" :: Maybe (MessageBodyAttributeMap), "MessageDeduplicationId" :: Maybe (String), "MessageGroupId" :: Maybe (String) }
 ```
 
 <p/>
@@ -1807,7 +1807,7 @@ Constructs SendMessageRequest from required parameters
 #### `newSendMessageRequest'`
 
 ``` purescript
-newSendMessageRequest' :: String -> String -> ({ "QueueUrl" :: String, "MessageBody" :: String, "DelaySeconds" :: NullOrUndefined (Int), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap), "MessageDeduplicationId" :: NullOrUndefined (String), "MessageGroupId" :: NullOrUndefined (String) } -> { "QueueUrl" :: String, "MessageBody" :: String, "DelaySeconds" :: NullOrUndefined (Int), "MessageAttributes" :: NullOrUndefined (MessageBodyAttributeMap), "MessageDeduplicationId" :: NullOrUndefined (String), "MessageGroupId" :: NullOrUndefined (String) }) -> SendMessageRequest
+newSendMessageRequest' :: String -> String -> ({ "QueueUrl" :: String, "MessageBody" :: String, "DelaySeconds" :: Maybe (Int), "MessageAttributes" :: Maybe (MessageBodyAttributeMap), "MessageDeduplicationId" :: Maybe (String), "MessageGroupId" :: Maybe (String) } -> { "QueueUrl" :: String, "MessageBody" :: String, "DelaySeconds" :: Maybe (Int), "MessageAttributes" :: Maybe (MessageBodyAttributeMap), "MessageDeduplicationId" :: Maybe (String), "MessageGroupId" :: Maybe (String) }) -> SendMessageRequest
 ```
 
 Constructs SendMessageRequest's fields from required parameters
@@ -1816,7 +1816,7 @@ Constructs SendMessageRequest's fields from required parameters
 
 ``` purescript
 newtype SendMessageResult
-  = SendMessageResult { "MD5OfMessageBody" :: NullOrUndefined (String), "MD5OfMessageAttributes" :: NullOrUndefined (String), "MessageId" :: NullOrUndefined (String), "SequenceNumber" :: NullOrUndefined (String) }
+  = SendMessageResult { "MD5OfMessageBody" :: Maybe (String), "MD5OfMessageAttributes" :: Maybe (String), "MessageId" :: Maybe (String), "SequenceNumber" :: Maybe (String) }
 ```
 
 <p>The <code>MD5OfMessageBody</code> and <code>MessageId</code> elements.</p>
@@ -1841,7 +1841,7 @@ Constructs SendMessageResult from required parameters
 #### `newSendMessageResult'`
 
 ``` purescript
-newSendMessageResult' :: ({ "MD5OfMessageBody" :: NullOrUndefined (String), "MD5OfMessageAttributes" :: NullOrUndefined (String), "MessageId" :: NullOrUndefined (String), "SequenceNumber" :: NullOrUndefined (String) } -> { "MD5OfMessageBody" :: NullOrUndefined (String), "MD5OfMessageAttributes" :: NullOrUndefined (String), "MessageId" :: NullOrUndefined (String), "SequenceNumber" :: NullOrUndefined (String) }) -> SendMessageResult
+newSendMessageResult' :: ({ "MD5OfMessageBody" :: Maybe (String), "MD5OfMessageAttributes" :: Maybe (String), "MessageId" :: Maybe (String), "SequenceNumber" :: Maybe (String) } -> { "MD5OfMessageBody" :: Maybe (String), "MD5OfMessageAttributes" :: Maybe (String), "MessageId" :: Maybe (String), "SequenceNumber" :: Maybe (String) }) -> SendMessageResult
 ```
 
 Constructs SendMessageResult's fields from required parameters

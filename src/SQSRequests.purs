@@ -13,13 +13,13 @@ import AWS.SQS.Types as SQSTypes
 
 
 -- | <p>Adds a permission to a queue for a specific <a href="http://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P">principal</a>. This allows sharing access to the queue.</p> <p>When you create a queue, you have full control access rights for the queue. Only you, the owner of the queue, can grant or deny permissions to the queue. For more information about these permissions, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/acp-overview.html">Shared Queues</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p> <note> <p> <code>AddPermission</code> writes an Amazon-SQS-generated policy. If you want to write your own policy, use <code> <a>SetQueueAttributes</a> </code> to upload your policy. For more information about writing your own policy, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AccessPolicyLanguage.html">Using The Access Policy Language</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p> <p>Some actions take lists of parameters. These lists are specified using the <code>param.n</code> notation. Values of <code>n</code> are integers starting from 1. For example, a parameter list with two elements looks like this:</p> <p> <code>&amp;Attribute.1=this</code> </p> <p> <code>&amp;Attribute.2=that</code> </p> </note>
-addPermission :: forall eff. SQS.Service -> SQSTypes.AddPermissionRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+addPermission :: forall eff. SQS.Service -> SQSTypes.AddPermissionRequest -> Aff (exception :: EXCEPTION | eff) Unit
 addPermission (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "addPermission"
 
 
 -- | <p>Changes the visibility timeout of a specified message in a queue to a new value. The maximum allowed timeout value is 12 hours. Thus, you can't extend the timeout of a message in an existing queue to more than a total visibility timeout of 12 hours. For more information, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p> <p>For example, you have a message with a visibility timeout of 5 minutes. After 3 minutes, you call <code>ChangeMessageVisiblity</code> with a timeout of 10 minutes. At that time, the timeout for the message is extended by 10 minutes beyond the time of the <code>ChangeMessageVisibility</code> action. This results in a total visibility timeout of 13 minutes. You can continue to call the <code>ChangeMessageVisibility</code> to extend the visibility timeout to a maximum of 12 hours. If you try to extend the visibility timeout beyond 12 hours, your request is rejected.</p> <p>A message is considered to be <i>in flight</i> after it's received from a queue by a consumer, but not yet deleted from the queue.</p> <p>For standard queues, there can be a maximum of 120,000 inflight messages per queue. If you reach this limit, Amazon SQS returns the <code>OverLimit</code> error message. To avoid reaching the limit, you should delete messages from the queue after they're processed. You can also increase the number of queues you use to process your messages.</p> <p>For FIFO queues, there can be a maximum of 20,000 inflight messages per queue. If you reach this limit, Amazon SQS returns no error messages.</p> <important> <p>If you attempt to set the <code>VisibilityTimeout</code> to a value greater than the maximum time left, Amazon SQS returns an error. Amazon SQS doesn't automatically recalculate and increase the timeout to the maximum remaining time.</p> <p>Unlike with a queue, when you change the visibility timeout for a specific message the timeout value is applied immediately but isn't saved in memory for that message. If you don't delete a message after it is received, the visibility timeout for the message reverts to the original timeout value (not to the value you set using the <code>ChangeMessageVisibility</code> action) the next time the message is received.</p> </important>
-changeMessageVisibility :: forall eff. SQS.Service -> SQSTypes.ChangeMessageVisibilityRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+changeMessageVisibility :: forall eff. SQS.Service -> SQSTypes.ChangeMessageVisibilityRequest -> Aff (exception :: EXCEPTION | eff) Unit
 changeMessageVisibility (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "changeMessageVisibility"
 
@@ -37,7 +37,7 @@ createQueue (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
 
 
 -- | <p>Deletes the specified message from the specified queue. You specify the message by using the message's <i>receipt handle</i> and not the <i>MessageId</i> you receive when you send the message. Even if the message is locked by another reader due to the visibility timeout setting, it is still deleted from the queue. If you leave a message in the queue for longer than the queue's configured retention period, Amazon SQS automatically deletes the message. </p> <note> <p> The receipt handle is associated with a specific instance of receiving the message. If you receive a message more than once, the receipt handle you get each time you receive the message is different. If you don't provide the most recently received receipt handle for the message when you use the <code>DeleteMessage</code> action, the request succeeds, but the message might not be deleted.</p> <p>For standard queues, it is possible to receive a message even after you delete it. This might happen on rare occasions if one of the servers storing a copy of the message is unavailable when you send the request to delete the message. The copy remains on the server and might be returned to you on a subsequent receive request. You should ensure that your application is idempotent, so that receiving a message more than once does not cause issues.</p> </note>
-deleteMessage :: forall eff. SQS.Service -> SQSTypes.DeleteMessageRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+deleteMessage :: forall eff. SQS.Service -> SQSTypes.DeleteMessageRequest -> Aff (exception :: EXCEPTION | eff) Unit
 deleteMessage (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "deleteMessage"
 
@@ -49,7 +49,7 @@ deleteMessageBatch (SQS.Service serviceImpl) = AWS.request serviceImpl method  w
 
 
 -- | <p>Deletes the queue specified by the <code>QueueUrl</code>, regardless of the queue's contents. If the specified queue doesn't exist, Amazon SQS returns a successful response.</p> <important> <p>Be careful with the <code>DeleteQueue</code> action: When you delete a queue, any messages in the queue are no longer available. </p> </important> <p>When you delete a queue, the deletion process takes up to 60 seconds. Requests you send involving that queue during the 60 seconds might succeed. For example, a <code> <a>SendMessage</a> </code> request might succeed, but after 60 seconds the queue and the message you sent no longer exist.</p> <p>When you delete a queue, you must wait at least 60 seconds before creating a queue with the same name. </p>
-deleteQueue :: forall eff. SQS.Service -> SQSTypes.DeleteQueueRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+deleteQueue :: forall eff. SQS.Service -> SQSTypes.DeleteQueueRequest -> Aff (exception :: EXCEPTION | eff) Unit
 deleteQueue (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "deleteQueue"
 
@@ -85,7 +85,7 @@ listQueues (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
 
 
 -- | <p>Deletes the messages in a queue specified by the <code>QueueURL</code> parameter.</p> <important> <p>When you use the <code>PurgeQueue</code> action, you can't retrieve a message deleted from a queue.</p> </important> <p>When you purge a queue, the message deletion process takes up to 60 seconds. All messages sent to the queue before calling the <code>PurgeQueue</code> action are deleted. Messages sent to the queue while it is being purged might be deleted. While the queue is being purged, messages sent to the queue before <code>PurgeQueue</code> is called might be received, but are deleted within the next minute.</p>
-purgeQueue :: forall eff. SQS.Service -> SQSTypes.PurgeQueueRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+purgeQueue :: forall eff. SQS.Service -> SQSTypes.PurgeQueueRequest -> Aff (exception :: EXCEPTION | eff) Unit
 purgeQueue (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "purgeQueue"
 
@@ -97,7 +97,7 @@ receiveMessage (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
 
 
 -- | <p>Revokes any permissions in the queue policy that matches the specified <code>Label</code> parameter. Only the owner of the queue can remove permissions.</p>
-removePermission :: forall eff. SQS.Service -> SQSTypes.RemovePermissionRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+removePermission :: forall eff. SQS.Service -> SQSTypes.RemovePermissionRequest -> Aff (exception :: EXCEPTION | eff) Unit
 removePermission (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "removePermission"
 
@@ -115,18 +115,18 @@ sendMessageBatch (SQS.Service serviceImpl) = AWS.request serviceImpl method  whe
 
 
 -- | <p>Sets the value of one or more queue attributes. When you change a queue's attributes, the change can take up to 60 seconds for most of the attributes to propagate throughout the Amazon SQS system. Changes made to the <code>MessageRetentionPeriod</code> attribute can take up to 15 minutes.</p> <note> <p>In the future, new attributes might be added. If you write code that calls this action, we recommend that you structure your code so that it can handle new attributes gracefully.</p> </note>
-setQueueAttributes :: forall eff. SQS.Service -> SQSTypes.SetQueueAttributesRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+setQueueAttributes :: forall eff. SQS.Service -> SQSTypes.SetQueueAttributesRequest -> Aff (exception :: EXCEPTION | eff) Unit
 setQueueAttributes (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "setQueueAttributes"
 
 
 -- | <p>Add cost allocation tags to the specified Amazon SQS queue. For an overview, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-tagging-queues.html">Tagging Amazon SQS Queues</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p> <p>When you use queue tags, keep the following guidelines in mind:</p> <ul> <li> <p>Adding more than 50 tags to a queue isn't recommended.</p> </li> <li> <p>Tags don't have any semantic meaning. Amazon SQS interprets tags as character strings.</p> </li> <li> <p>Tags are case-sensitive.</p> </li> <li> <p>A new tag with a key identical to that of an existing tag overwrites the existing tag.</p> </li> <li> <p>Tagging API actions are limited to 5 TPS per AWS account. If your application requires a higher throughput, file a <a href="https://console.aws.amazon.com/support/home#/case/create?issueType=technical">technical support request</a>.</p> </li> </ul> <p>For a full list of tag restrictions, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/limits-queues.html">Limits Related to Queues</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p>
-tagQueue :: forall eff. SQS.Service -> SQSTypes.TagQueueRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+tagQueue :: forall eff. SQS.Service -> SQSTypes.TagQueueRequest -> Aff (exception :: EXCEPTION | eff) Unit
 tagQueue (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "tagQueue"
 
 
 -- | <p>Remove cost allocation tags from the specified Amazon SQS queue. For an overview, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-tagging-queues.html">Tagging Amazon SQS Queues</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p> <p>When you use queue tags, keep the following guidelines in mind:</p> <ul> <li> <p>Adding more than 50 tags to a queue isn't recommended.</p> </li> <li> <p>Tags don't have any semantic meaning. Amazon SQS interprets tags as character strings.</p> </li> <li> <p>Tags are case-sensitive.</p> </li> <li> <p>A new tag with a key identical to that of an existing tag overwrites the existing tag.</p> </li> <li> <p>Tagging API actions are limited to 5 TPS per AWS account. If your application requires a higher throughput, file a <a href="https://console.aws.amazon.com/support/home#/case/create?issueType=technical">technical support request</a>.</p> </li> </ul> <p>For a full list of tag restrictions, see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/limits-queues.html">Limits Related to Queues</a> in the <i>Amazon Simple Queue Service Developer Guide</i>.</p>
-untagQueue :: forall eff. SQS.Service -> SQSTypes.UntagQueueRequest -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+untagQueue :: forall eff. SQS.Service -> SQSTypes.UntagQueueRequest -> Aff (exception :: EXCEPTION | eff) Unit
 untagQueue (SQS.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "untagQueue"
